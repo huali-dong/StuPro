@@ -2,12 +2,16 @@
     <footer class="app-footer">
         <div class="footer-content">
             <ul >
-                <li ref="li" @click="changeColor" class="footer-left" v-for="item in footer" :key="item.id">
-                    <a class="footer-block">
-                        <img :src="item.img" v-bind:class="{depColor:item.classActive}">
-                        <p  v-bind:class="{depColor:item.classActive}">{{item.title}}</p>
-                    </a>
-                </li>
+                <router-link  tag="a" ref="li" class="footer-left" v-for="item in footer" :key="item.id"
+                    :to = "item.path"
+                    active-class="depColor"
+                    @click="change"
+                >
+                <div>
+                    <img :src="item.img">
+                    <p >{{item.title}}</p>
+                </div>
+                </router-link>
             </ul>
         </div>
     </footer>
@@ -18,22 +22,24 @@ export default {
     data(){
         return {
             footer : [
-                {id:1,title:"首页",img:"/images/mainMenu-find.png",path:"/",classActive:false},
-                {id:2,title:"购票",img:"/images/mainMenu-member.png",path:"/",classActive:false},
-                {id:4,title:"我的",img:"/images/mov-active.png",path:"/",classActive:false}
+                {id:1,title:"首页",img:"/images/mainMenu-seeFilm.png",path:"/home"},
+                {id:2,title:"购票",img:"/images/mainMenu-tickets.png",path:"/order/now-playing"},
+                {id:4,title:"我的",img:"/images/mainMenu-member.png",path:"/mine"}
             ]
         }
     },
     methods:{
-        changeColor (){
-            console.log(this)
+        change(){
+            console.log(this,333)
         }
     }
 }
 </script>
 
 <style lang="scss">
-    
+      .depColor{
+            color:  #f74444 !important;
+        }
     .footer-content{
             position: fixed;
             bottom: 0;
@@ -45,26 +51,23 @@ export default {
             ul{
                 list-style: none;
                 display: flex;
-                justify-content: center;
-                li{
+                justify-content: space-around;
+                a{
                     text-align: center;
-                    a{
+                     color: #666;
+                    div{
                         display: inline-block;
                         width: 100%;
                         height: 100%;
                         padding-top: .133333rem;
                         padding-bottom: .133333rem;
+                        
                         img{
                             width: .64rem;
                             height: .64rem;
                         }
-                        .depColor{
-                            color: #f74444;
-                        }
                         p{
-                            color: #666;
                             font-size: .32rem;
-                        
                         }
                     }
                 }

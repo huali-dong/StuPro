@@ -6,14 +6,24 @@ function resolve(url) {
 module.exports = { 
     devServer :{
         port:8080,
+        proxy:{
+            "/mg":{
+                target:"http://movie.miguvideo.com",
+                pathRewrite:{"^/mg":""}
+            },
+            "/mz":{
+                target:"https://m.maizuo.com",
+                pathRewrite:{"^/mz":""}
+            }
+        },
     },
     chainWebpack: (config)=>{
         config.resolve.alias
             .set('@style', resolve('src/stylesheets'))
             .set('@c',resolve('src/components'))
-            .set('layout',resolve('src/layout'))
-            .set('@img',resolve('public/images/'))
-            .set('@libs',resolve('public/libs/'))
+            .set('@libs',resolve('src/libs/'))
             .set("@page",resolve("src/pages"))
+            .set("@util",resolve("src/util"))
+            .set('@img',resolve('public/images/'))
     }
 }
