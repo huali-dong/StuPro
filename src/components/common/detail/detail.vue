@@ -29,9 +29,9 @@
                                 </div>
                             </div>
                         </div>
-                        <p id="describe">{{detail.describe}}</p>
+                        <p id="describe"  :class="{changeclick : clickdata}" >{{detail.describe}}</p>
                         <div class="text-center">
-                            <span id="showDec"></span>
+                            <span id="showDec" :class="{showdec : clickdata}" @click="changeheight"></span>
                         </div>
                     </div>
                 </div>
@@ -54,8 +54,10 @@ export default {
   data() {
     return {
       detail: null,
-      cid: this.$route.query.cid
+      cid: this.$route.query.cid,
+      clickdata:false
     };
+
   },
   created() {
     this.$http
@@ -78,6 +80,10 @@ export default {
  methods:{
    back(){
      this.$router.back()
+   },
+   changeheight(){
+     this.clickdata  = !this.clickdata;
+     console.log(this.clickdata)
    }
  }
 };
@@ -86,12 +92,20 @@ export default {
 .detail-list-movie {
    height: 15.226667rem;
 }
+.changeclick {
+  height: auto !important;
+}
+.showdec{
+  background: url("http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/images/icon/chevron-up.png") no-repeat!important;
+  width: 1.453333rem !important;
+}
   .detail-wraper {
     background: #f0f0f0;
     .detail-head {
       background-color: #fff;
       box-sizing: border-box;
-      height: 11.786667rem;
+      // height: 11.786667rem;
+      overflow: auto;
       .detail-pic {
         position: relative;
         width: 100%;

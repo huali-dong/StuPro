@@ -4,6 +4,7 @@ function resolve(url) {
     return path.resolve(__dirname, url)
   }
 module.exports = { 
+    // baseUrl:"/maizuo/",
     devServer :{
         port:8080,
         proxy:{
@@ -14,6 +15,10 @@ module.exports = {
             "/mz":{
                 target:"https://m.maizuo.com",
                 pathRewrite:{"^/mz":""}
+            },
+            "/bd":{
+                target:"http://api.map.baidu.com",
+                pathRewrite:{"^/bd":""}
             }
         },
     },
@@ -25,5 +30,7 @@ module.exports = {
             .set("@page",resolve("src/pages"))
             .set("@util",resolve("src/util"))
             .set('@img',resolve('public/images/'))
+            .set('@store',resolve('src/store/'))
+
     }
 }

@@ -1,6 +1,7 @@
 <template>
     <mt-index-list ref="root" id="scroll">
         <mt-index-section 
+         v-if="cities"
         v-for="(value,key) in cities"
         :key="key"
         :index="key"
@@ -8,51 +9,73 @@
             <mt-cell v-for="item in value"
                 :key="item.id"
                 :title="item.name"
+                @click.native="changeCity(item)"
             ></mt-cell>
         </mt-index-section>
 </mt-index-list>
 </template>
 <script>
 import { IndexList, IndexSection, Cell } from "mint-ui";
+import { Indicator } from 'mint-ui';
+import {CHANGE_CITY} from "@store/chunks/mutations-types"
 export default {
   components: {
     [IndexList.name]: IndexList,
     [IndexSection.name]: IndexSection,
     [Cell.name]: Cell
   },
-  beforeCreate() {
-    this.$http.get("/mz/v4/api/city").then(res => {
-      this.city = res.data.data.cities;
-    });
-  },
+  // beforeCreate() {
+  //   Indicator.open('加载中...');
+  //   this.$http.get("/mz/v4/api/city").then(res => {
+  //     this.city = res.data.data.cities;
+  //     Indicator.close();
+  //   });
+  // },
+
   data() {
     return {
       city: []
     };
   },
-  mounted() {
-      console.log(document.querySelector('#scroll').offsetTop,123)
+  methods:{
+    //点击，更改数据
+    changeCity({id:cityId,name:cityName}){
+      console.log(23)
+      this.$store.commit({
+        type : CHANGE_CITY,
+        city:{
+            cityId,cityName
+        }
+      })
+      this.$router.push({name:"movie"})
+    }
   },
   computed: {
     cities: function() {
-      //定义一个数组，然后将字符串分割，转化为数组
-      let arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-      let obj = {};
-      //将ABCD放到obj对象的键上面
-      arr.forEach(item => {
-        obj[item] = [];
+      //之所以在这里写是因为减少一次请求地址，如果写在上面会请求两次
+        this.city = this.$store.state.chunks.cities
+      if(this.city){
+           //定义一个数组，然后将字符串分割，转化为数组
+          let arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+          let obj = {};
+          //将ABCD放到obj对象的键上面
+          arr.forEach(item => {
+            obj[item] = [];
+          });
+           this.city.forEach(item => {
+          //根据首字母来判断
+          let word = item.pinyin.substr(0, 1);
+          obj[word].push(item);
       });
-      this.city.forEach(item => {
-        //根据首字母来判断
-        let word = item.pinyin.substr(0, 1);
-        obj[word].push(item);
-      });
-      for (const key in obj) {
-        if (!obj[key].length) {
-          delete obj[key];
-        }
+          for (const key in obj) {
+            if (!obj[key].length) {
+              delete obj[key];
+            }
+          }
+          return obj;
+      }else{
+        return null;
       }
-      return obj;
     }
   }
 };

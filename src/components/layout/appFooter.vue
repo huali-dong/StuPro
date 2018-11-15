@@ -5,7 +5,6 @@
                 <router-link  tag="a" ref="li" class="footer-left" v-for="item in footer" :key="item.id"
                     :to = "item.path"
                     active-class="depColor"
-                    @click="change"
                 >
                 <div>
                     <img :src="item.img">
@@ -23,16 +22,11 @@ export default {
         return {
             footer : [
                 {id:1,title:"首页",img:"/images/mainMenu-seeFilm.png",path:"/home"},
-                {id:2,title:"购票",img:"/images/mainMenu-tickets.png",path:"/order/now-playing"},
+                {id:2,title:"购票",img:"/images/mainMenu-tickets.png",path:"/order"},
                 {id:4,title:"我的",img:"/images/mainMenu-member.png",path:"/mine"}
             ]
         }
     },
-    methods:{
-        change(){
-            console.log(this,333)
-        }
-    }
 }
 </script>
 

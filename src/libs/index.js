@@ -8,6 +8,7 @@ import 'swiper/dist/css/swiper.css';
 // filters
 import '@util/filters'
 
+import "@util/filtertime"
 
 //引入axios
 // import ajax from "@util/axios.js";

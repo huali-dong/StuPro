@@ -1,18 +1,18 @@
 <template>
      <div class="app-films-item">
-        <div class="img-box"><img :src='"http://movie.miguvideo.com" +info.picAddr' alt="" width="100%"></div>
+        <div class="img-box"><img :src="info.poster.thumbnail" alt="" width="100%"></div>
         <div class="film-info">
-            <p class="title">{{info.filmName}}</p>
-            <p class="description">{{info.introdescription}}</p>
-            <div v-if = "info.isNowPlaying" class="film-counts count">
-                <span class="film-count-color1"></span>
+            <p class="title">{{info.name}}</p>
+            <p class="description">{{info.intro}}</p>
+            <div v-if = "info.isNowPlaying" class="film-counts count" data-reactid=".0.1.$FilmView-.0.1.0.$4439.0.1.4">
+                <span class="film-count-color1">{{info.cinemaCount}}</span>
                 <span >家影院上映&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="film-count-color1"></span>
+                <span class="film-count-color1">{{info.watchCount}}</span>
                 <span >人购票  </span>
             </div>
-            <p class="time" v-else></p>
+            <p class="time" v-else>{{info.premiereAt | premiere(true)}}</p>
             </div>
-        <div class="grade"  v-if = "info.isNowPlaying"></div>
+        <div class="grade"  v-if = "info.isNowPlaying">{{info.grade}}</div>
     </div>
 </template>
 <script>

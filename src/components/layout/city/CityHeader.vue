@@ -11,9 +11,8 @@
         </div>
     </div>
     <div class="city-now">
-        <!-- 当前城市 -->
         <span class="city-now-title">
-            <i>当前城市:</i>&nbsp;&nbsp;成都
+            <i>当前城市:</i>&nbsp;&nbsp;{{city.cityName}}
             </span>
     </div>
     <div class="go-top" v-if="Show">
@@ -22,7 +21,7 @@
 </div>
 </template>
 <script>
-
+import {mapState} from "vuex"
 export default {
   
     data(){
@@ -31,9 +30,16 @@ export default {
 
         }
     },
-    mounted() {
-        console.log(this.$route)
-    },
+   computed:mapState({//从state里面获得数据
+       city : state=>state.chunks.city
+   }),
+//    beforeCreate() {
+//     //    console.log(this.$store)
+//        this.$store.dispatch({//当mutation更改数据之后
+//            type:"getCurrentPosition"
+//        })
+//        this.$store.
+//    },
     methods:{
         back(){
             this.$router.back()
