@@ -59,6 +59,7 @@ export default {
 </script>
 <style lang="scss">
 .module-up {
+  height: 7.36rem;
   margin-top: .266667rem;
   background: #fff;
   border-top: 1px solid #f1f1f1;

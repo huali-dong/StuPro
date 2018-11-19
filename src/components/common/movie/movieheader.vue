@@ -13,7 +13,7 @@
             </ul>
         </div>
     <section class="main">
-        <movie :typeinfo="type"></movie>
+        <movie  :typeinfo="type"></movie>
     </section>
     <router-view></router-view>
 </div>
@@ -21,7 +21,6 @@
 </template>
 <script>
 import Movie from "./movie";
-// import { mapState } from "vuex";
 export default {
     components:{
         Movie,
@@ -35,12 +34,6 @@ export default {
             type:"now-playing" || this.$route.params.url
         }
       },
-      
-    //   beforeCreate() {
-    //       this.$store.dispatch({
-    //         type:"getCurrentPosition"
-    //       })
-    //   },
 };
 </script>
 <style lang="scss">

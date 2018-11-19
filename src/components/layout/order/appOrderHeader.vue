@@ -34,7 +34,7 @@ export default {
           {id:1,path:"movie",title:"影片"},
           {id:2,path:"cinema",title:"影院"}
          ],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-         typeinfo : "movie",
+         typeinfo :this.$route.name,
        }
      },
     methods:{

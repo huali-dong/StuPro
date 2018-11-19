@@ -1,59 +1,73 @@
 <template>
     <div>
-         <section class="module">
-        <div class="blur"></div>
-        <swiper class="slide-ul" :options="swiperOption" ref="mySwiper" >
-                <swiper-slide class="slide-li" >
-                    <a >
-                    <img />  
-                    </a>
-                </swiper-slide>
-        </swiper>
-    </section>
+        <section class="cinema-module  blur">
+            <swiper class="slide-ul" :options="swiperOption" ref="mySwiper" >
+                    <swiper-slide class="slide-li"
+                        v-for="item in list" 
+                        :key="item.contentId"
+                     >
+                        <a >
+                        <img class="img" :src="item.picAddr"/>  
+                        </a>
+                    </swiper-slide>
+            </swiper>
+            <img class="img-btn" src="../../../../public/images/film-selected.png">
+        </section>
     </div>
 </template>
 <script>
 export default {
-   data(){
-       return {
-            swiperOption: {
-         freeMode: true,
+  props: ["info"],
+  data() {
+    return {
+      swiperOption: {
+        freeMode: true,
         slidesPerView: "auto",
-        spaceBetween: 30,
+        spaceBetween: 10,
         slidesOffsetAfter: 0,
-            }
-       }
-   }
-}
+        on: {}
+      },
+      list: []
+    };
+  },
+  created() {
+    this.$http
+      .post(
+        "/mg/mta-service/data/migu/cinemaMovie.jsp?cinemaId=" + this.info.id
+      )
+      .then(res => {
+        console.log(res);
+        this.list = res.data.movies;
+      });
+  }
+};
 </script>
 <style lang="scss">
-.module {
-  margin-top: 2.133333rem;
-  margin-bottom: 0.266667rem;
-  background: #fff;
-  border-top: 1px solid #f1f1f1;
-  border-bottom: 1px solid #f1f1f1;
+.cinema-module {
+  width: 10rem;
+  height: 4.346667rem;
+  background: url("../../../../public/images/film-Selected-bg.png");
   position: relative;
-  height: 8.986667rem;
-  .blur {
-    filter: blur(35px);
+  .img-btn {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
+    width: 0.533333rem;
+    bottom: 0rem;
+    left: 50%;
+    margin-left: -0.266667rem;
   }
-  .slide-ul{
-     .slide-li{
-       width: 5rem !important;
-       height: 7.413333rem !important;
-       margin-top: 1.066667rem;
-        img{
-          width: 5rem;
-          height: 7.413333rem
-        }
-  }
+  .swiper-container {
+    height: 4.346667rem;
+    padding: 0.533333rem 0 0.4rem;
+    position: relative;
+    width: 100%;
+    .slide-li {
+      width: 2.186667rem;
+      height: 3.306667rem;
+      .img {
+        width: 2.186667rem;
+        height: 3.306667rem;
+      }
+    }
   }
 }
 </style>

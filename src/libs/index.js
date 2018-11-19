@@ -10,6 +10,8 @@ import '@util/filters'
 
 import "@util/filtertime"
 
+import bus from  "@util/bus"
+
 //引入axios
 // import ajax from "@util/axios.js";
 
@@ -17,4 +19,6 @@ import "@util/filtertime"
 Vue.use(VueAwesomeSwiper);
 
 Vue.prototype.$http = axios;
+Vue.prototype.$bus = bus;
+
 

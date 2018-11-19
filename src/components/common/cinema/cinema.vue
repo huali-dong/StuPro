@@ -30,7 +30,6 @@ export default {
     beforeCreate() {
         Indicator.open("加载中")
         this.$http.post("/mg/mta-service/data/migu/validCinemaes.jsp?cityCode=4751").then((res)=>{
-            console.log(res)
             Indicator.close()
             this.list = res.data.cinemaes;
         })

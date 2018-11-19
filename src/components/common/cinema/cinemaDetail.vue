@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <cinema-detail-main></cinema-detail-main>
+        <cinema-detail-main :info={id}></cinema-detail-main>
     </div>
     <app-footer></app-footer>
 </div>
@@ -31,9 +31,9 @@ export default {
     },
     data(){
         return {
-            lisy:[],
             cname:this.$route.query.cname,
-            cadd : this.$route.query.cadd
+            cadd : this.$route.query.cadd,
+            id:this.$route.query.cid
         }
     },
     methods:{
@@ -41,14 +41,7 @@ export default {
              this.$router.push({name:"movie"})
         }
     },
-    created() {
-        console.log(this.$route)
-        let id = this.$route.query.cid
-        this.$http.post("/mg/mta-service/data/migu/cinemaMovie.jsp?cinemaId="+id)
-        .then((res)=>{
-            console.log(res)
-        })
-    },
+   
 }
 </script>
 <style lang="scss">

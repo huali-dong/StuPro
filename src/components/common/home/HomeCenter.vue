@@ -3,7 +3,6 @@
         <div class="module-name">正在售票</div>
         <swiper class="slide-ul"   v-if = "billBord" :options="swiperOption" ref="mySwiper" >
                 <swiper-slide class="slide-li" v-for="(item,index) in billBord" :key="index" >
-                    <a >
                         <div class="img" >
                             <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>  
                         </div>
@@ -11,7 +10,6 @@
                             <p class="info-name">{{item.name}}</p>
                             <p class="info-logo">{{item.LONG_NAME}}</p>
                         </div>
-                    </a>
                 </swiper-slide>
         </swiper>
     </section>
@@ -22,7 +20,8 @@ export default {
   data() {
     return {
       swiperOption: {
-         freeMode: true,
+        autoplay:true,
+        freeMode: true,
         slidesPerView: "auto",
         spaceBetween: 30,
         slidesOffsetAfter: 0,
@@ -61,6 +60,8 @@ export default {
 </script>
 <style lang="scss">
 .module-center {
+  width: 10rem;
+  height: 7.36rem;
   margin-top: .266667rem;
   background: #fff;
   border-top: 1px solid #f1f1f1;
@@ -76,9 +77,10 @@ export default {
     font-size: 16px !important;
     border-left: 0.08rem solid #f74444;
   }
-  .slide-ul {
-    width: 10rem;
+  .swiper-container{
+    width: 100%;
     height: 6.106667rem;
+    position: relative;
     .slide-li {
       width: 3.143467rem;
       height: 5.981333rem;

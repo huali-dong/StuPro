@@ -48,6 +48,25 @@ export default {
             }
         }
     },
+        mounted() {
+            this.scroll = scroll({
+                el: this.$refs.root,
+                handler: ()=>{
+                    Toast({
+                        message: '没有更多数据啦',
+                        position: 'bottom',
+                        duration: 1000
+                        });
+                },
+                onscroll:(y)=>{
+                   if(y <= -200) this.$bus.$emit("changebackshow")
+                   if(y>=-200) this.$bus.$emit("changeback")
+                }
+            })
+            this.$bus.$on("backtop",()=>{
+                this.scroll.scrollTo(0,0,200)
+            })
+        },
     methods:{
           getlist(){
                 Indicator.open('加载中...');
@@ -63,16 +82,6 @@ export default {
                    this.$http.post("/mg/lovev/miguMovie/data/indexFilmComing_data.jsp")
                   .then((res)=>{
                        Indicator.close();
-                    //    let data = res.data.movies;
-                    //    let arr = [];
-                    //      data.forEach((item)=>{
-                    //             arr.push(item.openingDate)
-                    //    })
-                    //    console.log(arr)
-                    //    let list = _.dropWhile(arr,function(item) {
-                    //         return item.indexOf("-") =-1
-                    //    })
-                    //    console.log(list)
                        this.filmcoming = (res.data.movies).splice(0,70)
                   })
               }
@@ -134,14 +143,6 @@ export default {
     //     this.films = this.films.concat(res.data.data.films)
     //    },
     },
-    // mounted() {
-    //     console.log(this.$refs.root,scroll)
-    //     this.scroll = scroll({
-    //         el: this.$refs.root,
-    //         handler: ()=>{},
-    //         onscroll:()=>{}
-    //     })
-    // },
     // mounted() {
     //     console.log(this.$refs.root,scroll)
     //     this.scroll = scroll({

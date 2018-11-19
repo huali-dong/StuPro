@@ -110,10 +110,11 @@ export default {
       ul {
         width: 100%;
         display: flex;
+        height: 100%;
         justify-content: space-around;
         li {
-          padding-top: 0.213333rem;
-          padding-bottom: 0.32rem;
+          // padding-top: 0.213333rem;
+          // padding-bottom: 0.32rem;
           font-size: 0.373333rem;
           text-align: center;
           &:hover {
