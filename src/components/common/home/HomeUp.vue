@@ -1,16 +1,16 @@
 <template>
     <section class="module-up">
-        <div class="module-name">即将上映/test/</div>
+        <div class="module-name">精彩活动</div>
         <swiper class="slide-ul" v-if = "billBord" :options="swiperOption" ref="mySwiper" >
                 <swiper-slide class="slide-li"  v-for="(item,index) in billBord" :key="index">
                     <a >
                         <div class="img">
                             <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>  
                         </div>
-                        <div class="info">
+                        <!-- <div class="info">
                             <p class="info-name">{{item.name}}</p>
                             <p class="info-logo">{{item.LONG_NAME}}</p>
-                        </div>
+                        </div> -->
                     </a>
                 </swiper-slide>
         </swiper>
@@ -24,16 +24,17 @@ export default {
     return {
       swiperOption: {
         direction: "horizontal",
-        freeMode: true,
+        freeMode: false,
         slidesPerView: "auto",
         spaceBetween: 30,
-        loop: false,
-        on:{
-          click:function(){
-              let index = this.clickedIndex;
-              vm.gotoDetail(index);
-          }
-      }
+        loop: true,
+        loopedSlides:1,
+      //   on:{
+      //     click:function(){
+      //         let index = this.clickedIndex;
+      //         vm.gotoDetail(index);
+      //     }
+      // }
     },
       billBord: null
     }
@@ -50,7 +51,7 @@ export default {
   },
    methods:{
     gotoDetail (index){
-      console.log(this.billBord[index].REDREICT_ID)
+      // console.log(this.billBord[index].REDREICT_ID)
        this.$router.push({ name: "detail",query: {cid: this.billBord[index].REDREICT_ID}},)
     }
   }
@@ -59,7 +60,7 @@ export default {
 </script>
 <style lang="scss">
 .module-up {
-  height: 7.36rem;
+  height: 5.84375rem;
   margin-top: .266667rem;
   background: #fff;
   border-top: 1px solid #f1f1f1;
@@ -76,19 +77,22 @@ export default {
     border-left: 0.08rem solid #f74444;
   }
   .slide-ul {
-    width: 10rem;
-    height: 6.106667rem;
+    // width: 10rem;
+    height: 4.375rem;
     .slide-li {
-      width: 3.143467rem;
-      height: 5.981333rem;
+      width: 10rem;
+          height: 4.375rem;
       margin-right: 0 !important;
       float: left;
       padding-bottom: 5px;
       a {
         color: #000;
         .img {
-          width: 3.125067rem;
-          height: 4.773333rem;
+          width: 10rem;
+          height: 4.375rem;
+          img{
+             height: 4.375rem;
+          }
         }
         .info {
           width: 3.1248rem;

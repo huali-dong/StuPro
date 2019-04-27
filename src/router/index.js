@@ -10,8 +10,8 @@ import AppNotFound from "@page/not-found/NotFound";
 import City from "@page/city/city";
 import AppCineame from "@c/common/cinema/cinema";
 import AppMovie from "@c/common/movie/movieheader";
-import AppCineameDetail from "@c/common/cinema/cinemaDetail"
-
+import AppCineameDetail from "@c/common/cinema/cinemaDetail";
+import AppSeat from "@c/common/seat/seat"
 //使vuerouter成为全局组件
 Vue.use(VueRouter);
 
@@ -72,6 +72,12 @@ const routes = [
         path : "/detail",
         name : "detail",
         component : AppDetail,
+        props:true
+    },
+    {
+        path : "/seat",
+        name : "seat",
+        component : AppSeat,
         props:true
     },
     {

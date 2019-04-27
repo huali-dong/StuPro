@@ -5,10 +5,11 @@
                 <swiper-slide class="slide-li" v-for="(item,index) in billBord" :key="index" >
                         <div class="img" >
                             <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>  
+                            <!-- <img v-bind:src='"http://localhost:3000"+item.movieLogo'/> -->
                         </div>
                         <div class="info">
-                            <p class="info-name">{{item.name}}</p>
-                            <p class="info-logo">{{item.LONG_NAME}}</p>
+                            <p class="info-name">{{item.movieName}}</p>
+                            <!-- <p class="info-logo">{{item.LONG_NAME}}</p> -->
                         </div>
                 </swiper-slide>
         </swiper>
@@ -20,11 +21,10 @@ export default {
   data() {
     return {
       swiperOption: {
-        autoplay:true,
-        freeMode: true,
+        autoplay:false,
+        freeMode: false,
         slidesPerView: "auto",
-        spaceBetween: 30,
-        slidesOffsetAfter: 0,
+        slidesOffsetAfter : 10,
         on:{
           click:function(){
               let index = this.clickedIndex;
@@ -47,6 +47,7 @@ export default {
   watch:{
       filmlist:{
          handler(){
+            // this.billBord = this.filmlist
             this.billBord = this.filmlist[1].list
          }
       }
@@ -78,20 +79,25 @@ export default {
     border-left: 0.08rem solid #f74444;
   }
   .swiper-container{
-    width: 100%;
+    // width: 100%;
     height: 6.106667rem;
     position: relative;
     .slide-li {
       width: 3.143467rem;
       height: 5.981333rem;
-      margin-right: 0 !important;
+      // margin-right: 0 !important;
       float: left;
       padding-bottom: 5px;
-      a {
+      margin-right: .3125rem;
+      // a {
         color: #000;
         .img {
           width: 3.125067rem;
           height: 4.773333rem;
+          img{
+            width: 100%;
+            height: 100%;
+          }
         }
         .info {
           width: 3.1248rem;
@@ -114,7 +120,7 @@ export default {
               font-size: .346667rem;
           }
         }
-      }
+      // }
     }
   }
 }

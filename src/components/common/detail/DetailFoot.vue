@@ -2,22 +2,26 @@
      <div class="detail-footer">
             <div class="detail-fixed">
                 <ul>
-                    <li class="bot-list" id="collect">
+                    <!-- <li class="bot-list" id="collect">
                         <i class="icon-small"></i>
                         <span>&nbsp;收藏</span>
                     </li>
                     <li class="bot-list" id="edit">
                         <i class="icon-small"></i>
                         <span>&nbsp; 写影评</span>
-                    </li>
-                    <li class="bot-list " id="buyticket">选座购票</li>
+                    </li> -->
+                    <li class="bot-list " @click="buy" id="buyticket">选座购票</li>
                 </ul>
             </div>
         </div>
 </template>
 <script>
 export default {
-    
+    methods:{
+      buy(){
+        this.$router.push({name:"seat"})
+      }
+    }
 }
 </script>
 <style lang="scss">
@@ -33,7 +37,7 @@ export default {
       z-index: 100;
       .bot-list {
         padding: .266667rem 0px;
-        float: left;
+        float: right;
         text-align: center;
         font-size: .346667rem;
         color: #fff;
@@ -66,8 +70,8 @@ export default {
           }
       }
       #buyticket{
-              padding: 15px 0px 10px;
-    display: list-item;
+        padding: 15px 0px 10px;
+        display: list-item;
         background-color: #FEC22C;
         width: 50%;
       }

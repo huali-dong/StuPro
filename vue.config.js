@@ -19,7 +19,11 @@ module.exports = {
             "/bd":{
                 target:"http://api.map.baidu.com",
                 pathRewrite:{"^/bd":""}
-            }
+            },
+            // "/api":{
+            //     target:"http://localhost:3000",
+            //     pathRewrite:{"^/api":""}
+            // }
         },
     },
     chainWebpack: (config)=>{
@@ -31,6 +35,7 @@ module.exports = {
             .set("@util",resolve("src/util"))
             .set('@img',resolve('public/images/'))
             .set('@store',resolve('src/store/'))
+            .set('@assets',resolve('src/assets'))
 
     }
 }

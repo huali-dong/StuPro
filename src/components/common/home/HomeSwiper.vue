@@ -46,12 +46,15 @@ export default {
     
     this.$http
       .get("/mg/lovev/miguMovie/data/seeFilmData.jsp")
+      // .get("http://localhost:3000/api/v1/movie/list")
       .then(res => {
           let that = this
         this.swiperOption =  {
             effect: "coverflow",
             slidesPerView: 3,
             centeredSlides: true,
+            loop: true,
+            loopedSlides:1,
             coverflow: {
                 rotate: 30,
                 stretch: 6,
