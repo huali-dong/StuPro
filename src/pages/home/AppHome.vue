@@ -29,11 +29,11 @@ export default {
       }
   },
   created() {
-      this.$http.get("/mg/lovev/miguMovie/data/seeFilmData.jsp")
-    // this.$http.get("http://localhost:3000/api/v1/movie/list")
+    //   this.$http.get("/mg/lovev/miguMovie/data/seeFilmData.jsp")
+    this.$http.get("http://localhost:3000/api/v1/movie/list")
       .then((res)=>{
-          this.filmlist = res.data
-        //   this.filmlist = res.data.data.items
+        //   this.filmlist = res.data
+          this.filmlist = res.data.data.items
       }).catch((err)=>{
           console.log(err)
       })

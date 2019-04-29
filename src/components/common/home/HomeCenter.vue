@@ -4,8 +4,8 @@
         <swiper class="slide-ul"   v-if = "billBord" :options="swiperOption" ref="mySwiper" >
                 <swiper-slide class="slide-li" v-for="(item,index) in billBord" :key="index" >
                         <div class="img" >
-                            <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>  
-                            <!-- <img v-bind:src='"http://localhost:3000"+item.movieLogo'/> -->
+                      <!-- <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>   -->
+                             <img v-bind:src='"http://localhost:3000"+item.movieLogo'/>
                         </div>
                         <div class="info">
                             <p class="info-name">{{item.movieName}}</p>
@@ -47,14 +47,15 @@ export default {
   watch:{
       filmlist:{
          handler(){
-            // this.billBord = this.filmlist
-            this.billBord = this.filmlist[1].list
+            this.billBord = this.filmlist
+            // this.billBord = this.filmlist[1].list
+            console.log(this.filmlist)
          }
       }
   },
   methods:{
     gotoDetail (index){
-       this.$router.push({ name: "detail",query: {cid: this.billBord[index].SRC_CONT_ID}},)
+       this.$router.push({ name: "detail",query: {cid: this.billBord[index].movieId}},)
     }
   }
 };

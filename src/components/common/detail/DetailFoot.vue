@@ -17,9 +17,26 @@
 </template>
 <script>
 export default {
+    data() {
+      return {
+          cid:this.$route.query.cid,
+          detail:null
+      }
+      
+    },
+    created() {
+      this.$http
+        .get("mg/publish/i_www/resource/lovev/miguMovie/detail/detail_data.jsp?cid=" +this.cid)
+        .then(res => {
+          this.detail = res.data[0];
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  },
     methods:{
       buy(){
-        this.$router.push({name:"seat"})
+        this.$router.push({name:"seat",query:{detailInfo:this.detail}})
       }
     }
 }

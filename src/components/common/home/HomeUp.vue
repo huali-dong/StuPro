@@ -5,7 +5,8 @@
                 <swiper-slide class="slide-li"  v-for="(item,index) in billBord" :key="index">
                     <a >
                         <div class="img">
-                            <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>  
+                            {/* <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>   */}
+                            <img v-bind:src='"http://localhost:3000"+item.movieLogo'/>
                         </div>
                         <!-- <div class="info">
                             <p class="info-name">{{item.name}}</p>
@@ -45,7 +46,8 @@ export default {
   watch:{
     filmlist(){
       //  console.log(this.filmlist[2].list);
-      return this.billBord = this.filmlist[2].list;
+      // return this.billBord = this.filmlist[2].list;
+      return this.billBord=this.filmlist
     
     }
   },

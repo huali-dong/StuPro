@@ -4,7 +4,8 @@
         <swiper class="slide-ul" v-if = "billBord" :options="swiperOption" ref="mySwiper" >
                 <swiper-slide class="slide-li"  v-for="(item,index) in billBord" :key="index">
                     <a >
-                    <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>  
+                    <!--<img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/> -->
+                    <img v-bind:src='"http://localhost:3000"+item.movieLogo'/>
                     </a>
                 </swiper-slide>
         </swiper>
@@ -45,9 +46,10 @@ export default {
      
     
     this.$http
-      .get("/mg/lovev/miguMovie/data/seeFilmData.jsp")
-      // .get("http://localhost:3000/api/v1/movie/list")
+      // .get("/mg/lovev/miguMovie/data/seeFilmData.jsp")
+      .get("http://localhost:3000/api/v1/movie/list")
       .then(res => {
+        // console.log(res.data.data.items,"dhldhl")
           let that = this
         this.swiperOption =  {
             effect: "coverflow",
@@ -65,11 +67,13 @@ export default {
             on: {
                 slideChangeTransitionEnd: function(){
                     // console.log(1, res.data[0].list[this.activeIndex].imgSrc)
-                    that.bg_img = res.data[0].list[this.activeIndex].imgSrc
+                    // that.bg_img = res.data[0].list[this.activeIndex].imgSrc
+                    that.bg_img=res.data.data.items[this.activeIndex].movieLogo
                 }
             }
         }
-        this.billBord = res.data[0].list;
+        // this.billBord = res.data[0].list;
+        this.billBord= res.data.data.items
       })
   },
   computed: {
