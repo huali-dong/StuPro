@@ -9,6 +9,7 @@ Vue.filter('premiere', (timetamp, hasDay) => {
     return `${(_date.getMonth() + 1)}月${_date.getDate()}日上映${hasDay ? _day : ''}`
 })
 
+
 function formatDay(day) {
     switch (day) {
         case 0: return '星期日';

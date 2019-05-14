@@ -9,6 +9,7 @@ import 'swiper/dist/css/swiper.css';
 import '@util/filters'
 
 import "@util/filtertime"
+import "@util/pinyin"
 
 import bus from  "@util/bus"
 

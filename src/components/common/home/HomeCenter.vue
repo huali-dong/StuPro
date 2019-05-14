@@ -49,7 +49,7 @@ export default {
          handler(){
             this.billBord = this.filmlist
             // this.billBord = this.filmlist[1].list
-            console.log(this.filmlist)
+            // console.log(this.filmlist)
          }
       }
   },

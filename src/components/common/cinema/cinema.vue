@@ -28,34 +28,12 @@ export default {
         }
     },
     beforeCreate() {
+        let id = JSON.parse(localStorage.getItem("city")).cityId
         Indicator.open("加载中")
-        this.$http.post("/mg/mta-service/data/migu/validCinemaes.jsp?cityCode=4751").then((res)=>{
+        this.$http.post("/mg/mta-service/data/migu/validCinemaes.jsp?cityCode="+id).then((res)=>{
             Indicator.close()
             this.list = res.data.cinemaes;
         })
-        // this.$http.get("/mz/v4/api/cinema",{
-        //     params:{
-        //         __t:Date.now()
-        //     }
-        // }).then((res)=>{
-        //     Indicator.close()
-        //     console.log(res.data.data.cinemas)
-        //     let data = res.data.data.cinemas;
-        //     this.list = data;
-        //     let str = [];
-        //     for(var i=0;i<data.length;i++){
-        //         str.push(data[i].district.name);
-        //     }
-        //     for(var i=0;i<data.length;i++){
-        //         str.forEach((item,index)=>{
-        //             var obj = [];
-        //             if(data[i].district.name == item){
-        //                 obj[index].push(data)
-        //             }
-        //         })
-        //     }
-        //    console.log(obj)
-        // })
     },
 }
 </script>

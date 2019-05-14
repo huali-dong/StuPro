@@ -79,11 +79,11 @@ export default {
   },
  methods:{
    back(){
-     this.$router.back()
+     this.$router.push({ name: "home"})
    },
    changeheight(){
      this.clickdata  = !this.clickdata;
-     console.log(this.clickdata)
+    //  console.log(this.clickdata)
    }
  }
 };

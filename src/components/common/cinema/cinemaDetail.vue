@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <cinema-detail-main :info={id}></cinema-detail-main>
+        <cinema-detail-main :info={id} :cname={cname}></cinema-detail-main>
     </div>
     <app-footer></app-footer>
 </div>

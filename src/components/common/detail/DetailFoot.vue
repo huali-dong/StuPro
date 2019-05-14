@@ -2,20 +2,17 @@
      <div class="detail-footer">
             <div class="detail-fixed">
                 <ul>
-                    <!-- <li class="bot-list" id="collect">
+                    <li class="bot-list" id="collect" @click="login">
                         <i class="icon-small"></i>
-                        <span>&nbsp;收藏</span>
+                        <span>&nbsp;我的</span>
                     </li>
-                    <li class="bot-list" id="edit">
-                        <i class="icon-small"></i>
-                        <span>&nbsp; 写影评</span>
-                    </li> -->
                     <li class="bot-list " @click="buy" id="buyticket">选座购票</li>
                 </ul>
             </div>
         </div>
 </template>
 <script>
+import { Toast } from "mint-ui";
 export default {
     data() {
       return {
@@ -35,8 +32,28 @@ export default {
         });
   },
     methods:{
-      buy(){
-        this.$router.push({name:"seat",query:{detailInfo:this.detail}})
+       buy(){
+        if(localStorage.getItem("user")){
+          this.$router.push({name:"cinema"})
+        }else{
+          Toast({
+            message: '请先点击"我的"登录',
+            position: 'bottom',
+            duration: 3000
+          });
+          // setTimeout(function(){
+          //   console.log("login")
+          //   this.$router.push({ name: "login"})
+          // }, 3000);
+         } 
+      },
+      login(){
+        if(localStorage.getItem("user")){
+          this.$router.push({ name: "mine"})
+        }else{
+          this.$router.push({ name: "login",query:{detail:"detail",detailInfo:this.detail}})
+        }
+         
       }
     }
 }
@@ -54,7 +71,7 @@ export default {
       z-index: 100;
       .bot-list {
         padding: .266667rem 0px;
-        float: right;
+        float: left;
         text-align: center;
         font-size: .346667rem;
         color: #fff;
@@ -69,7 +86,7 @@ export default {
       }
       #collect {
         color: #3a3a3a;
-        width: 25%;
+        width: 50%;
         i {
           background-image: url("http://movie.miguvideo.com/publish/i_www/resource/lovev/miguMovie/images/icon/star-grey.png");
           position: relative;
@@ -91,6 +108,7 @@ export default {
         display: list-item;
         background-color: #FEC22C;
         width: 50%;
+        float: right;
       }
     }
   }

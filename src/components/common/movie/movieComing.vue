@@ -3,7 +3,7 @@
     <div 
     v-for = "(info) in list" :key="info.id"
     >
-      <p class="dataTitle" v-if="info.isshow" >{{ info.openingDate | time}}</p>
+      <p class="comingdataTitle" v-if="info.isshow" >{{ info.openingDate | time}}</p>
         <div class="app-films-item">
             <div class="img-box"><img :src='"http://movie.miguvideo.com"+info.picAddr' alt="" width="100%"></div>
             <div class="film-info">
@@ -50,12 +50,13 @@ export default {
 };
 </script>
 <style lang="scss">
-.dataTitle{
-  width: 10rem;
-  height: .746667rem;
+.comingdataTitle{
+    width: 10rem;
+    height: .746667rem;
     padding: .133333rem .32rem;
     background: rgb(239,239,239);
     font-size: .373333rem;
+    text-align: left;
 }
 .app-films-item {
   padding: 12px 12px 0;

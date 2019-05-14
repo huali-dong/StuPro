@@ -1,6 +1,6 @@
 <template>
     <section class="module">
-        <div v-if = "bg_img" class="blur" :style = "{backgroundImage: 'url(http://movie.miguvideo.com/publish/i_www'+bg_img+')'}"></div>
+        <div v-if = "bg_img" class="blur" :style = "{backgroundImage: 'url(http://localhost:3000'+bg_img+')'}"></div>
         <swiper class="slide-ul" v-if = "billBord" :options="swiperOption" ref="mySwiper" >
                 <swiper-slide class="slide-li"  v-for="(item,index) in billBord" :key="index">
                     <a >
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+let vm = null;
 export default {
   props:["filmlist"],
   data() {
@@ -24,29 +25,8 @@ export default {
     };
   },
  created(){
-        // this.swiperOption =  {
-        //     effect: "coverflow",
-        //     slidesPerView: 3,
-        //     centeredSlides: true,
-        //     coverflow: {
-        //         rotate: 30,
-        //         stretch: 6,
-        //         depth: 30,
-        //         modifier: 2,
-        //         slideShadows: true
-        //     },
-        //     on: {
-        //         slideChangeTransitionEnd: function(){
-        //             // console.log(1, res.data[0].list[this.activeIndex].imgSrc)
-        //             this.bg_img = this.filmlist[0].list[this.activeIndex].imgSrc
-        //         }
-        //     }
-        // },
-        // this.billBord = this.filmlist.list
-     
-    
+    vm = this;
     this.$http
-      // .get("/mg/lovev/miguMovie/data/seeFilmData.jsp")
       .get("http://localhost:3000/api/v1/movie/list")
       .then(res => {
         // console.log(res.data.data.items,"dhldhl")
@@ -69,7 +49,12 @@ export default {
                     // console.log(1, res.data[0].list[this.activeIndex].imgSrc)
                     // that.bg_img = res.data[0].list[this.activeIndex].imgSrc
                     that.bg_img=res.data.data.items[this.activeIndex].movieLogo
-                }
+                },
+                // click:function(){
+                //   let index = this.activeIndex;
+                //   console.log(index)
+                //   vm.gotoDetail(index);
+                //  }
             }
         }
         // this.billBord = res.data[0].list;
@@ -80,7 +65,12 @@ export default {
     swiper() {
       return this.$refs.mySwiper.animate;
     }
-  }
+  },
+  //   methods:{
+  //     gotoDetail (index){
+  //       this.$router.push({ name: "detail",query: {cid: this.billBord[index].movieId}},)
+  //     }
+  // }
 };
 </script>
 <style lang="scss">

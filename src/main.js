@@ -12,7 +12,6 @@ import '@libs/index';
 import router from "./router"
 
 import store from "./store"
-
 Vue.config.productionTip = false
 
 //跟实例

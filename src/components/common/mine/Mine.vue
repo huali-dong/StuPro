@@ -17,14 +17,16 @@
             </div>
         </div>
         <div class="mine-body">
-                <div class="mine-body-list">
+                <div class="mine-body-list"  @click="toOrder" v-if="this.phone!='点击登录'">
                     <div class="mine-body-list-order">
                         <i></i>
-                        <span>我的订单</span>
+                        <span >我的订单</span>
                     </div>
                 </div>
         </div>
-        <div class="mine-foot"></div>
+        <div class="mine-foot">
+            <button v-if="this.phone!='点击登录'" type="button" @click="logout" class="login-out-btn" id="logout">退出登录</button>
+        </div>
         
     </div>
     
@@ -33,21 +35,26 @@
 export default {
     data(){
         return {
-            phone:"点击登陆",
+            phone:"点击登录"
         }
     },
-    beforeRouteEnter (to, from, next) {
-        next(vm=>{
-            console.log(vm)
-            // let msg = JSON.parse(localStorage.getItem("userInfo"));
-            // if(msg){
-            //     this.phone = msg;
-            // }
-        })
+    mounted(){
+        if(localStorage.getItem("user")){
+            let phone = JSON.parse(localStorage.getItem("user"));
+            this.phone = phone;
+        }
+        
     },
     methods:{
         toLogin(){
-            this.$router.push({name:"login"})
+            this.$router.push({name:"login"});
+        },
+        logout(){
+            localStorage.removeItem('user');
+            this.phone="点击登录"
+        },
+        toOrder(){
+            this.$router.push({name:"myorder"});
         }
     }
     
@@ -112,6 +119,17 @@ export default {
                             padding: .266667rem .32rem;
                             border-bottom: 1px solid #dbdbdb;;
                     }
+            }
+        }
+        .mine-foot{
+            .login-out-btn {
+                padding: 13px;
+                width: 100%;
+                color: #fff;
+                background-color: #f74444;
+                border: 0 none;
+                border-radius: 4px;
+                margin-top: 80px;
             }
         }
     }

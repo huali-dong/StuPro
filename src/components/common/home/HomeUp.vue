@@ -5,8 +5,8 @@
                 <swiper-slide class="slide-li"  v-for="(item,index) in billBord" :key="index">
                     <a >
                         <div class="img">
-                            {/* <img v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>   */}
-                            <img v-bind:src='"http://localhost:3000"+item.movieLogo'/>
+                             <img  v-bind:src='"http://movie.miguvideo.com/publish/i_www"+item.imgSrc'/>   
+                            <!-- <img v-bind:src='"http://localhost:3000"+item.movieLogo'/> -->
                         </div>
                         <!-- <div class="info">
                             <p class="info-name">{{item.name}}</p>
@@ -28,7 +28,7 @@ export default {
         freeMode: false,
         slidesPerView: "auto",
         spaceBetween: 30,
-        loop: true,
+        // loop: true,
         loopedSlides:1,
       //   on:{
       //     click:function(){
@@ -42,15 +42,22 @@ export default {
   },
    created() {
       vm = this;
+      this.$http.get("/mg/lovev/miguMovie/data/seeFilmData.jsp")
+      .then((res)=>{
+          this.billBord = res.data[2].list
+          // console.log(this.billBord,"res")
+      }).catch((err)=>{
+          console.log(err)
+      })
   },
-  watch:{
-    filmlist(){
-      //  console.log(this.filmlist[2].list);
-      // return this.billBord = this.filmlist[2].list;
-      return this.billBord=this.filmlist
+  // watch:{
+  //   filmlist(){
+  //     //  console.log(this.filmlist[2].list);
+  //     // return this.billBord = this.filmlist[2].list;
+  //     return this.billBord=this.filmlist
     
-    }
-  },
+  //   }
+  // },
    methods:{
     gotoDetail (index){
       // console.log(this.billBord[index].REDREICT_ID)

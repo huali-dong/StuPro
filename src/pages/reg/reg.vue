@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <Login :title="title" :otherTitle="otherTitle" :router="router" ></Login>
-  </div>
+    <div>
+        <Login :title="title" :otherTitle="otherTitle" :router="router" ></Login>
+    </div>
 </template>
 <script>
 import Login from "@c/common/loginAndreg/bussinessLogin";
@@ -11,9 +11,9 @@ export default {
   },
   data() {
     return {
-        title:"登录",
-        otherTitle:"注册",
-        router:"reg"
+        title:"注册",
+        otherTitle:"登录",
+        router:"login"
     }
   }
 }

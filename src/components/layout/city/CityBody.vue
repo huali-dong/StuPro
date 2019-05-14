@@ -7,8 +7,8 @@
         :index="key"
         >
             <mt-cell v-for="item in value"
-                :key="item.id"
-                :title="item.name"
+                :key="item.cityCode"
+                :title="item.cityName"
                 @click.native="changeCity(item)"
             ></mt-cell>
         </mt-index-section>
@@ -17,7 +17,8 @@
 <script>
 import { IndexList, IndexSection, Cell } from "mint-ui";
 import { Indicator } from 'mint-ui';
-import {CHANGE_CITY} from "@store/chunks/mutations-types"
+import {CHANGE_CITY} from "@store/chunks/mutations-types";
+import pinyin from "@util/pinyin"
 export default {
   components: {
     [IndexList.name]: IndexList,
@@ -39,7 +40,7 @@ export default {
   },
   methods:{
     //点击，更改数据
-    changeCity({id:cityId,name:cityName}){
+    changeCity({cityCode:cityId,cityName:cityName}){
       console.log(23)
       this.$store.commit({
         type : CHANGE_CITY,
@@ -62,10 +63,13 @@ export default {
           arr.forEach(item => {
             obj[item] = [];
           });
-           this.city.forEach(item => {
+      this.city.forEach(item => {
           //根据首字母来判断
-          let word = item.pinyin.substr(0, 1);
-          obj[word].push(item);
+          if(item.cityCode){
+            // console.log(item.cityCode,item,"code")
+            let word = pinyin.getPinYinFirstCharacter(item.cityName,"",true).slice(0,1)
+            obj[word].push(item);
+          } 
       });
           for (const key in obj) {
             if (!obj[key].length) {

@@ -69,9 +69,10 @@ export default {
         },
     methods:{
           getlist(){
+              let id = JSON.parse(localStorage.getItem("city")).cityId
                 Indicator.open('加载中...');
               if(this.typeinfo == "now-playing"){
-                  this.$http.post("/mg/lovev/miguMovie/data/indexFilm_data.jsp?cityCode=4751")
+                  this.$http.post("/mg/lovev/miguMovie/data/indexFilm_data.jsp?cityCode="+id)
                   .then((res)=>{
                       this.films = res.data.movies;
                        Indicator.close();
@@ -79,78 +80,15 @@ export default {
                     //    this.filmlist = this.films.splice(this.index,this.count);
                   })
               }else{
-                   this.$http.post("/mg/lovev/miguMovie/data/indexFilmComing_data.jsp")
+                   this.$http.post("/mg/lovev/miguMovie/data/indexFilmComing_data.jsp?cityCode="+id)
                   .then((res)=>{
                        Indicator.close();
                        this.filmcoming = (res.data.movies).splice(0,70)
                   })
               }
           },
-
-        //   sendlist(){
-        //       if(this.hasMore){
-        //           if(this.filmlist.length<this.films.length){
-        //                new Promise(resolve=>{
-        //                    Indicator.open('加载中...');
-        //                    setTimeout( ()=>{
-        //                     this.index = this.count,
-        //                     this.count +=5;
-        //                     this.filmlist = this.filmlist.concat(this.films.splice(this.index,this.count))
-        //                     console.log(this.count,this.index,this.filmlist)
-        //                     resolve()
-        //                 },1000)                        
-        //             }).then(()=>{
-        //                 Indicator.close();
-        //             }) 
-        //           }else{
-        //               this.hasMore = false;
-        //               this.index=0;
-        //               this.count=5;
-        //               let instance = Toast('没有更多数据');
-        //                 setTimeout(() => {
-        //                 instance.close();
-        //                 }, 2000);
-        //           }
-                  
-        //       }
-        //   }
-    //    async getlist(){
-    //         if(!this.hasMore) return false;
-    //         // http://movie.miguvideo.com/mta-service/data/migu/currentCity.jsp
-    //         // let res = await this.$http.get("/mg/mta-service/data/migu/currentCity.jsp",{
-    //         Indicator.open('加载中...');
-    //         let res = await this.$http.get("/mz/v4/api/film/"+this.typeinfo,{
-    //                 params:{
-    //                     page:this.page,
-    //                     count:7
-    //                 }
-    //             })
-    //             .then((res)=>{
-    //                 console.log(res)
-    //                 return res;
-    //             }).catch((err)=>{
-    //                 console.log(err);
-    //             });
-    //          //判断有没有更多数据
-    //         Indicator.close();
-    //         if ( res.data.data.page.total - res.data.data.page.current <= 0 ) {
-    //             this.hasMore = false;
-    //             let instance = Toast('没有更多数据');
-    //         }else {
-    //             this.page ++ // 有更多的话，页数增加
-    //         } 
-    //         // console.log(res)
-    //     this.films = this.films.concat(res.data.data.films)
-    //    },
     },
-    // mounted() {
-    //     console.log(this.$refs.root,scroll)
-    //     this.scroll = scroll({
-    //         el: this.$refs.root,
-    //         handler: sendlist(),
-    //         onscroll:()=>{}
-    //     })
-    // },
+
     
 }
 </script>
