@@ -7,16 +7,16 @@
                 <span>{{head.money}}</span>
             </a>
         </div>
-        <div class="head-right">
+        <!-- <div class="head-right">
             <a>
                 <img :src="head.historyimg">
             </a>
             <a class="right">
                 <img :src="head.search">
             </a>
-        </div>
+        </div> -->
     </div>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <div class="navbar-left">
             <ul>
                 <li v-for="item in navbar.message" :key="item.id">
@@ -29,7 +29,7 @@
                 <img v-bind:src="navbar.navListimg">
             </a>
         </div>
-    </nav>
+    </nav> -->
 </header>
 </template>
 <script>

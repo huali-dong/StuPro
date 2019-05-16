@@ -3,13 +3,13 @@
         <div>
             <i class="orderPic" @click="back"></i>
             <p class="orderdataTitle">我的订单</p>
-            <div class="app-films-item" v-for="(item,index) in this.info" :key="item">
+            <div class="app-films-item" v-for="(item,index) in this.info" :key="index">
                 <div class="img-box">
                     <!-- <img :src='"http://movie.miguvideo.com"+item.pic' alt="" width="100%"> -->
                     <img :src="item.pic" width="100%">
                 </div>
                 <div class="film-info">
-                   <div class="delete">
+                   <div class="delete"  v-if="isShow(item.Day)">
                           <div @click="remove(index)" class="film-Status">删除</div>
                         </div>
                     <div class="film-info-top">
@@ -49,7 +49,7 @@
 export default {
   data() {
       return {
-          info: ""
+          info: {}
       }
   },
   mounted: function() {
@@ -61,11 +61,21 @@ export default {
         userId: localStorage.getItem("user")
       }
     }).then(res => {
-        // console.log(res,"res")
       this.info = res.data.data;
     });
   },
   methods:{
+      isShow(Day){
+        let day = Number(new Date());//当前时间
+        let pastday=Number(new Date(Day));//传过来的时间
+        if(pastday<day){
+          return true
+        }else{
+          return false
+        }
+        
+        return true
+      },
       back(){
           this.$router.back()
       },

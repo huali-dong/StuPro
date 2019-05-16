@@ -16,7 +16,7 @@
                       <p class="actor">{{info.actor}}</p>
                   </div>
                   <div class="film-info-bottom-right">
-                      <div class="film-Status">预售</div>
+                      <div @click="toDetail(info.contentId)" class="film-Status">预售</div>
                   </div>
                   
               </div>
@@ -33,8 +33,14 @@ export default {
       list : this.info,
     }
   },
+  methods:{
+    toDetail(id){
+       this.$router.push({ name: "detail",query: {cid: id}})
+    }
+  },
  created(){
     let lists = JSON.parse(JSON.stringify(this.list))
+    console.log(this.list)
     lists.forEach((item,index) => {
       if(index == 0) item.isshow = true
       if(index>=1){

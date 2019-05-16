@@ -95,6 +95,8 @@
 import axios from "axios";
 import _ from "lodash";
 import { Toast, Actionsheet } from "mint-ui";
+// import AlipaySdk from 'alipay-sdk';
+// import fs from "fs"
 export default {
   data() {
     return {
@@ -116,7 +118,12 @@ export default {
     };
   },
   mounted: function() {
-    console.log(this.showdetail,"movieId")
+    // console.log(this.showdetail,"movieId")
+    // const alipaySdk = new AlipaySdk({
+    // appId: '2016092900626140',
+    // privateKey: fs.readFileSync('./private-key.txt', 'ascii'),
+    // alipayPublicKey: fs.readFileSync('./alipay_public_key.txt', 'ascii'),
+    // });
     this.$http({
       url: "http://localhost:3000/api/v1/seat/findone",
       method: "POST",
@@ -222,9 +229,11 @@ export default {
 
 
     //支付
+
+
     buy(){
       if(this.selectArray.length>0){
-        console.log(this.info,"info")
+        // console.log(this.info,"info")
          this.$http({
           url: "http://localhost:3000/api/v1/seat/add",
           method: "POST",
@@ -253,7 +262,39 @@ export default {
       }
      
     }
-
+  // async  buy(){
+  //     if(this.selectArray.length>0){
+  //     await this.$http({
+  //         url: "http://localhost:3000/api/v1/seat/add",
+  //         method: "POST",
+  //         data: {
+  //           movieId: this.info.contentId,
+  //           showId:this.showdetail.showId,
+  //           movieName:this.info.filmName,
+  //           position:this.selectArray,
+  //           userId:localStorage.getItem("user"),
+  //           pic:this.info.picAddr,
+  //           Day:this.time,
+  //           beginTime:this.showdetail.showTime,
+  //           cinemaName:this.filmName.cname,
+  //           price:this.selectArray.length*this.showdetail.miguPrice.slice(0,2),
+  //           orderNumber:Math.random(0,1000),
+  //           status:"未支付"
+  //         }
+  //       }).then(res => {
+  //         console.log(res)
+  //       })
+  //       this.$http({
+  //        url:"https://openapi.alipaydev.com/gateway.do",
+  //         method:"GET",
+  //         data:{
+  //           total_amount:this.info.picAddr,
+  //           subject:this.info.filmName,
+  //           out_trade_no:Math.random(0,1000)
+  //         }
+  //     })
+  //   }
+  //  }
   }
 };
 </script>

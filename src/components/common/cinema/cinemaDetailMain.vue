@@ -25,7 +25,7 @@
               <a>{{this.detail.showdate}}</a>
             </swiper-slide>
           </swiper>
-          <div class="detail" v-for="(item,index) in detailInfo" :key="item" >
+          <div class="detail" v-for="(item,index) in detailInfo" :key="index" >
             <div class="detail-list">
               <ul>
                 <li class="pull-left">
@@ -193,23 +193,24 @@ export default {
                 float: left;
                 .grey{
                       color: #666;
-                      line-height: .625rem;
+                      height: .625rem;
                       font-size: .4375rem;
                 }
                 .light-grey{
-                      line-height: .4rem;
+                      height: .4rem;
                       color: #999;
                       font-size: .3125rem !important;
                       overflow: hidden;
                       height:.8rem;
                 }
                 .high-grey{
-                      line-height: .625rem;
+                      height: .625rem;
                       font-size: .4375rem !important;
+                      overflow: hidden;
                 }
                 .film-Price1{
                   height: 1.25rem;
-                  line-height: 1.25rem;
+                  height: 1.25rem;
                   color: #F74444;
                   .font-13{
                         font-size: .3125rem;
