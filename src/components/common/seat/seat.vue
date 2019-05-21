@@ -247,7 +247,8 @@ export default {
             Day:this.time,
             beginTime:this.showdetail.showTime,
             cinemaName:this.filmName.cname,
-            price:this.selectArray.length*this.showdetail.miguPrice.slice(0,2)
+            price:this.selectArray.length*this.showdetail.miguPrice.slice(0,2),
+            orderNumber:parseInt(Math.random(1,100)*1000000+1000000)
           }
         }).then(res => {
           this.$router.push({name:"bought"})

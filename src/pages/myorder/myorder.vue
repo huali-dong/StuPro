@@ -21,6 +21,9 @@
                     <div class="beginTime">
                         时间:{{item.Day}}  {{item.beginTime.slice(0,2)}}:{{item.beginTime.slice(2,4)}}
                     </div>
+                    <div class="beginTime">
+                       订单号:{{item.orderNumber?item.orderNumber:parseInt(Math.random()*1000000+1000000)}}
+                    </div>
                    
                     <div class="film-info-bottoms">
                         <div class="film-info-bottom-left">
@@ -151,7 +154,7 @@ export default {
         color: #61a9f7;
     }
     .cname{
-        line-height: .9375rem
+        // line-height: .9375rem
     }
     .film-info-top {
       display: inline-block;

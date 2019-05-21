@@ -40,7 +40,7 @@ export default {
   },
  created(){
     let lists = JSON.parse(JSON.stringify(this.list))
-    console.log(this.list)
+    // console.log(this.list)
     lists.forEach((item,index) => {
       if(index == 0) item.isshow = true
       if(index>=1){
